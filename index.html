@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator App</title>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="styles/all.min.css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="styles/bootstrap.css" />
+    <!-- Animate CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles/stylesheet.css" />
+  </head>
+  <body>
+    <div class="calculator row p-2 mt-5">
+      <div class="header my-2">
+        <img class="my-2 logo" src="images/logo.png" />
+        <p>iCALCULATOR</p>
+      </div>
+      <div class="col-12 mb-4">
+        <div class="screen px-2">
+          <div class="input"></div>
+          <div class="output-container"><div class="output">0</div></div>
+        </div>
+      </div>
+      <div class="col-3">
+        <button class="red-btn my-2 input-btn">C</button>
+      </div>
+      <div class="col-3">
+        <button class="red-btn my-2 input-btn">Del</button>
+      </div>
+      <div class="col-3">
+        <button class="red-btn my-2 input-btn">%</button>
+      </div>
+      <div class="col-3">
+        <button class="red-btn my-2 input-btn">/</button>
+      </div>
+      <div class="col-3"><button class="my-2 input-btn">7</button></div>
+      <div class="col-3"><button class="my-2 input-btn">8</button></div>
+      <div class="col-3"><button class="my-2 input-btn">9</button></div>
+      <div class="col-3">
+        <button class="red-btn my-2 input-btn">*</button>
+      </div>
+      <div class="col-3"><button class="my-2 input-btn">4</button></div>
+      <div class="col-3"><button class="my-2 input-btn">5</button></div>
+      <div class="col-3"><button class="my-2 input-btn">6</button></div>
+      <div class="col-3">
+        <button class="red-btn my-2 input-btn">-</button>
+      </div>
+      <div class="col-3"><button class="my-2 input-btn">1</button></div>
+      <div class="col-3"><button class="my-2 input-btn">2</button></div>
+      <div class="col-3"><button class="my-2 input-btn">3</button></div>
+      <div class="col-3">
+        <button class="red-btn my-2 input-btn">+</button>
+      </div>
+      <div class="col-3">
+        <button class="my-2 mode">
+          <img class="mode" src="images/dark-mode.png" />
+        </button>
+      </div>
+      <div class="col-3"><button class="my-2 input-btn">0</button></div>
+      <div class="col-3"><button class="my-2 input-btn">.</button></div>
+      <div class="col-3">
+        <button class="red-btn my-2 eval input-btn">=</button>
+      </div>
+    </div>
+    <!-- WOW JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+      new WOW().init();
+    </script>
+    <script src="js/wow.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <!-- App JS -->
+    <script src="js/app.js"></script>
+  </body>
+</html>
