@@ -55,6 +55,9 @@ input {
   input {
     width: 100px;
   }
+  #output {
+    font-size: small;
+  }
 }
 .btn {
   font-size: large;
