@@ -1,138 +1,50 @@
-let output = document.querySelector(`.output`);
-let input = document.querySelector(`.input`);
-let inputBtns = document.querySelectorAll(`.input-btn`);
+let from = document.querySelector(`#from`);
+let to = document.querySelector(`#to`);
+let amountEle = document.querySelector(`#amount`);
+let output = document.querySelector(`#output`);
+let convert = document.querySelector(`#convert`);
 
-inputBtns.forEach((btn) => {
-  btn.addEventListener(`click`, () => {
-    switch (btn.textContent) {
-      case `=`:
-        output.textContent = eval(input.textContent);
-        break;
+fetch("currencies.json")
+  .then((res) => res.json())
+  .then((data) => {
+    let list = data;
+    let currencies = Object.values(list);
+    let states = Object.keys(list);
 
-      case `+`:
-        if (
-          input.textContent.endsWith(`+`) ||
-          input.textContent.endsWith(`-`) ||
-          input.textContent.endsWith(`*`) ||
-          input.textContent.endsWith(`/`) ||
-          input.textContent.endsWith(`%`)
-        ) {
-          input.textContent = input.textContent.substring(
-            0,
-            input.textContent.length - 1
-          );
-          input.textContent += btn.textContent;
-        } else {
-          input.textContent += btn.textContent;
-        }
-        break;
-      case `-`:
-        if (
-          input.textContent.endsWith(`+`) ||
-          input.textContent.endsWith(`-`) ||
-          input.textContent.endsWith(`*`) ||
-          input.textContent.endsWith(`/`) ||
-          input.textContent.endsWith(`%`)
-        ) {
-          input.textContent = input.textContent.substring(
-            0,
-            input.textContent.length - 1
-          );
-          input.textContent += btn.textContent;
-        } else {
-          input.textContent += btn.textContent;
-        }
-        break;
-      case `*`:
-        if (
-          input.textContent.endsWith(`+`) ||
-          input.textContent.endsWith(`-`) ||
-          input.textContent.endsWith(`*`) ||
-          input.textContent.endsWith(`/`) ||
-          input.textContent.endsWith(`%`)
-        ) {
-          input.textContent = input.textContent.substring(
-            0,
-            input.textContent.length - 1
-          );
-          input.textContent += btn.textContent;
-        } else {
-          input.textContent += btn.textContent;
-        }
-        break;
-      case `/`:
-        if (
-          input.textContent.endsWith(`+`) ||
-          input.textContent.endsWith(`-`) ||
-          input.textContent.endsWith(`*`) ||
-          input.textContent.endsWith(`/`) ||
-          input.textContent.endsWith(`%`)
-        ) {
-          input.textContent = input.textContent.substring(
-            0,
-            input.textContent.length - 1
-          );
-          input.textContent += btn.textContent;
-        } else {
-          input.textContent += btn.textContent;
-        }
-        break;
-      case `%`:
-        if (
-          input.textContent.endsWith(`+`) ||
-          input.textContent.endsWith(`-`) ||
-          input.textContent.endsWith(`*`) ||
-          input.textContent.endsWith(`/`) ||
-          input.textContent.endsWith(`%`)
-        ) {
-          input.textContent = input.textContent.substring(
-            0,
-            input.textContent.length - 1
-          );
-          input.textContent += btn.textContent;
-        } else {
-          input.textContent += btn.textContent;
-        }
-        break;
-
-      case `C`:
-        input.textContent = ``;
-        output.textContent = 0;
-        break;
-      case `Del`:
-        input.textContent = input.textContent.substring(
-          0,
-          input.textContent.length - 1
-        );
-        break;
-
-      default:
-        input.textContent += btn.textContent;
-        break;
+    for (let i = 0; i < currencies.length; i++) {
+      let option = document.createElement(`option`);
+      option.style.fontSize = `14px`;
+      option.innerHTML = `${states[i]} - ${currencies[i]}`;
+      option.setAttribute(`value`, `${currencies[i]}`);
+      from.appendChild(option);
     }
-  });
+    for (let j = 0; j < currencies.length; j++) {
+      let option = document.createElement(`option`);
+      option.style.fontSize = `14px`;
+      option.innerHTML = `${states[j]} - ${currencies[j]}`;
+      option.setAttribute(`value`, `${currencies[j]}`);
+      to.appendChild(option);
+    }
+  })
+  .catch((error) => console.log("error", error));
+
+convert.addEventListener(`click`, () => {
+  fetch(
+    `https://api.exchangerate.host/convert?from=${from.value}&to=${to.value}`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      let amount = data.query.amount;
+      amount = amountEle.value;
+
+      if (isNaN(amount)) {
+        output.style.color = `red`;
+        output.innerHTML = `* You've entered a not valid character, use only numbers.`;
+      } else {
+        output.style.color = `black`;
+        output.innerHTML = `${amount} ${from.value} equals ${
+          data.result * amount
+        } ${to.value}`;
+      }
+    });
 });
-
-//================================================\\
-
-// Dark mode
-
-let logo = document.querySelector(`.logo`);
-let mode = document.querySelector(`.mode`);
-let calculator = document.querySelector(`.calculator`);
-
-let changePic = (picClass, picLight, picDark) => {
-  let logo = document.querySelector(picClass).src;
-  if (logo.indexOf(picLight) != -1) {
-    document.querySelector(picClass).src = picDark;
-  } else {
-    document.querySelector(picClass).src = picLight;
-  }
-};
-let darkMode = () => {
-  calculator.classList.toggle(`dark-mode`);
-  changePic(`.logo`, `images/logo.png`, `images/logo-dark.png`);
-  changePic(`.mode`, `images/light-mode.png`, `images/dark-mode.png`);
-};
-
-mode.addEventListener(`click`, darkMode);
