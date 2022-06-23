@@ -40,6 +40,22 @@ input {
   display: flex;
   justify-content: space-between;
 }
+@media (max-width: 1300px) {
+  .row {
+    width: 90%;
+  }
+  select {
+    width: 100px;
+  }
+  .selection {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  input {
+    width: 100px;
+  }
+}
 .btn {
   font-size: large;
 }
