@@ -45,7 +45,7 @@ input {
     width: 90%;
   }
   select {
-    width: 100px;
+    width: 200px;
   }
   .selection {
     flex-direction: column;
